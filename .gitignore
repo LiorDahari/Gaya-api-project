@@ -1,0 +1,11 @@
+# .NET Core build folders
+**/bin/
+**/obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# IDE files
+.vs/
