@@ -19,12 +19,12 @@ namespace GayaAPIProject.Controllers
             _service = service;
         }
 
-        [HttpPost]
+        [HttpPost("calculate")]
         public CalculateResponse Calculate([FromBody] CalculateRequest request)
         {
             return _service.Calculate(request);
         }
-        [HttpGet]
+        [HttpGet("operations")]
         public List<Operation> GetAllOperations() 
             {
                 return _service.GetAllOperations();
