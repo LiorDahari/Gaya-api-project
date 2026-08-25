@@ -1,0 +1,36 @@
+<h1>מחשבון גאיה</h1>
+
+<div class="calculator-container">
+
+  <div>
+    <label>ערך ראשון:</label>
+    <input [(ngModel)]="fieldA">
+  </div>
+
+  <div>
+    <label>ערך שני:</label>
+    <input [(ngModel)]="fieldB">
+  </div>
+
+  <div>
+    <label>בחר פעולה:</label>
+    <select *ngIf="operations?.length"
+            [(ngModel)]="selectedOperationId">
+
+      <option value="" disabled selected>בחר פעולה...</option>
+      <option *ngFor="let op of operations" [value]="op.id">
+        {{ op.name }}
+      </option>
+
+    </select>
+  </div>
+
+  <button (click)="calculate()">חשב</button>
+
+  <div class="result">
+    תוצאה: {{ result }}
+  </div>
+
+</div>
+
+<router-outlet />
