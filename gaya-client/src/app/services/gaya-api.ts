@@ -7,7 +7,7 @@ export class GayaApi {
   constructor(private http: HttpClient) {}
 
   ServerSideGET(): Observable<any> {
-    return this.http.get<any>('https://localhost:7044/api/Calculator/operations');');
+    return this.http.get<any>('https://localhost:7044/api/Calculator/operations');
   }
   Calculate(request: any): Observable<any> {
     return this.http.post<any>('https://localhost:7044/api/Calculator/calculate', request);
