@@ -1,4 +1,4 @@
-import { Component, signal, OnInit  } from '@angular/core';
+import { Component, signal, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GayaApi } from './services/gaya-api'; 
 import { CommonModule } from '@angular/common';
@@ -19,7 +19,10 @@ export class App implements OnInit {
   public selectedOperationId: number | null = null;
   public result: any = null;
 
-  constructor(private gayaApi: GayaApi) {}
+  constructor(
+    private gayaApi: GayaApi,
+    private cdr: ChangeDetectorRef
+  ) {}
   
   // ngOnInit(): void {
   //   this.gayaApi.ServerSideGET().subscribe(
@@ -28,10 +31,13 @@ export class App implements OnInit {
   //       this.operations = data; //Assign data to operations array 
   //   });
   // }  
-  ngOnInit() {
-    this.gayaApi.ServerSideGET().subscribe(ops => {
-    this.operations = ops;
-    this.selectedOperationId = null;
+ngOnInit(): void {
+    this.gayaApi.ServerSideGET().subscribe({
+      next: (ops) => {
+        this.operations = ops;
+        this.selectedOperationId = null;
+        this.cdr.detectChanges(); // עדכון תצוגה ראשוני
+      }
     });
   }
   calculate(): void {
@@ -48,9 +54,11 @@ export class App implements OnInit {
     this.gayaApi.Calculate(request).subscribe({
   next: (response) => {
     this.result = response.result;
+    this.cdr.detectChanges(); // רנדור מיד כשהתשובה מגיעה מהשרת
   },
   error: () => {
     this.result = 'שגיאה בחישוב';
+    this.cdr.detectChanges();
     }
   });
 }

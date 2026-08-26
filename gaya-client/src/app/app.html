@@ -14,14 +14,11 @@
 
   <div>
     <label>בחר פעולה:</label>
-    <select *ngIf="operations?.length"
-            [(ngModel)]="selectedOperationId">
-
-      <option value="" disabled selected>בחר פעולה...</option>
+    <select [(ngModel)]="selectedOperationId">
+      <option [ngValue]="null" disabled selected>בחר פעולה...</option>
       <option *ngFor="let op of operations" [value]="op.id">
         {{ op.name }}
       </option>
-
     </select>
   </div>
 
