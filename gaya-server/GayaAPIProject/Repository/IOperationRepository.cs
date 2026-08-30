@@ -7,5 +7,6 @@ namespace GayaAPIProject.Repository
         List<Operation> GetAllOperations();
         Operation GetOperation(int id);
         void SaveHistory(CalculationHistory history);
+        List<CalculationHistory> GetLastHistory();
     }
 }

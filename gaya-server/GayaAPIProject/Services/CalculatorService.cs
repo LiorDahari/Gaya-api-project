@@ -66,5 +66,10 @@ namespace GayaAPIProject.Services
         {
             return _repository.GetAllOperations();
         }
+        //החזרת הסטוריה - שלוש פעולות אחרונות
+        public List<CalculationHistory> GetLastHistory() 
+        { 
+            return _repository.GetLastHistory(); 
+        }
     }
 }

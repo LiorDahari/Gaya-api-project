@@ -10,5 +10,7 @@ namespace GayaAPIProject.Services
         // החזרת כל הפעולות הזמינות מה DB
         List<Operation> GetAllOperations();
 
+        //החזרת שלושת הפעולות האחרונות
+        List<CalculationHistory> GetLastHistory();
     }
 }

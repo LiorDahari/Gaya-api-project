@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class App implements OnInit {
   protected readonly title = signal('gaya-client');
   public operations: any[] = [];
-
+  public lastHistory: any[] = [];
   public fieldA: string = '';
   public fieldB: string = '';
   public selectedOperationId: number | null = null;
@@ -39,6 +39,11 @@ ngOnInit(): void {
         this.cdr.detectChanges(); // עדכון תצוגה ראשוני
       }
     });
+    this.gayaApi.GetLastHistory().subscribe({
+      next: (history) => {
+        this.lastHistory = history;
+      }
+    });
   }
   calculate(): void {
      if (this.selectedOperationId === null) {
@@ -55,6 +60,12 @@ ngOnInit(): void {
   next: (response) => {
     this.result = response.result;
     this.cdr.detectChanges(); // רנדור מיד כשהתשובה מגיעה מהשרת
+    this.gayaApi.GetLastHistory().subscribe({
+      next: (history) => {
+        this.lastHistory = history;
+        this.cdr.detectChanges(); // עדכון תצוגה לאחר הצלחה בחישוב
+      }
+    });
   },
   error: () => {
     this.result = 'שגיאה בחישוב';

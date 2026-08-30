@@ -29,5 +29,10 @@ namespace GayaAPIProject.Controllers
             {
                 return _service.GetAllOperations();
             }
+        [HttpGet("last-history")]
+        public List<CalculationHistory> GetLastHistory()
+        {
+            return _service.GetLastHistory();
+        }
     }
 }

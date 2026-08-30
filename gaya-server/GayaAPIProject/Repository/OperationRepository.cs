@@ -24,5 +24,14 @@ namespace GayaAPIProject.Repository
             _context.CalculationHistories.Add(history);  // הוסף לטבלה
             _context.SaveChanges();                       // שמור בDB
         }
+        public List<CalculationHistory> GetLastHistory()
+        {
+            return (
+                _context.CalculationHistories
+                .OrderByDescending(x => x.CreatedAt)
+                .Take(3)
+                .ToList()
+            );
+        }
     }
 }

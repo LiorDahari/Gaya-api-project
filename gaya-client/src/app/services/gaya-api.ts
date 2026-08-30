@@ -12,4 +12,7 @@ export class GayaApi {
   Calculate(request: any): Observable<any> {
     return this.http.post<any>('https://localhost:7044/api/Calculator/calculate', request);
   }
+  GetLastHistory(): Observable<any> {
+    return this.http.get<any>('https://localhost:7044/api/Calculator/last-history');
+  }
 }
